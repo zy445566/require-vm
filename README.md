@@ -56,3 +56,11 @@ console.log(fs)
  * { readFileSync: [Function: readFileSync] }
  */
 ```
+# API
+####  requireVm @return any
+|ParamName |Must|Type|Default|Remark|
+|:----    |:---|:----- |:----- |-----   |
+|reqest |yes  |string |  / | module name or js filename  |
+|contextObject |no  |Object |  {}   |   |
+|options |no  |Object |  {}   | [contextobject_options](https://nodejs.org/dist/latest/docs/api/vm.html#vm_vm_runinnewcontext_code_contextobject_options)  |
+|moduleMap |no  |Object |  {}   |   |
