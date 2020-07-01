@@ -1,0 +1,29 @@
+{
+  "name": "require-vm",
+  "version": "1.0.0",
+  "description": "more safe require ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zy445566/require-vm.git"
+  },
+  "keywords": [
+    "require",
+    "sfae",
+    "vm",
+    "memory",
+    "leak"
+  ],
+  "author": "zy445566",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zy445566/require-vm/issues"
+  },
+  "homepage": "https://github.com/zy445566/require-vm#readme",
+  "dependencies": {
+    "@types/node": "^14.0.14"
+  }
+}

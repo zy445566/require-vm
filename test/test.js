@@ -1,14 +1,4 @@
-# require-vm
-more safe require
-
-# install
-```sh
-npm install require-vm
-```
-
-# example
-```js
-const requireVm = require('require-vm');
+const requireVm = require('../index');
 // example 1 ------------------------------------------------------
 /**
  * ./a.js:
@@ -55,4 +45,3 @@ console.log(fs)
  * output:
  * { readFileSync: [Function: readFileSync] }
  */
-```
