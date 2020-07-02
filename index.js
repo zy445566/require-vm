@@ -26,12 +26,12 @@ function requireVm(reqest,contextObject={},options={},moduleMap={},isCache=false
         }
         jsCode = fs.readFileSync(jsPath);
         codeScript = new vm.Script(jsCode,options);
-    }
-    if(isCache) {
-        cacheMap[jsPath] = {
-            code:jsCode,
-            script:codeScript,
-            cachedData:codeScript.createCachedData()
+        if(isCache) {
+            cacheMap[jsPath] = {
+                code:jsCode,
+                script:codeScript,
+                cachedData:codeScript.createCachedData()
+            }
         }
     }
     options.filename = jsPath;
