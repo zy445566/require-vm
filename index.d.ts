@@ -1,2 +1,2 @@
-export function requireVm(reqest:string,contextObject:Object,options:Object,moduleMap:Object):any;
-export default function requireVm(reqest:string,contextObject:Object,options:Object,moduleMap:Object):any;
+export function requireVm(reqest:string,contextObject:Object,options:Object,moduleMap:Object,isCache:boolean):any;
+export default function requireVm(reqest:string,contextObject:Object,options:Object,moduleMap:Object,isCache:boolean):any;

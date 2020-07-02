@@ -1,7 +1,8 @@
 const vm = require("vm");
 const fs = require("fs");
 const path = require("path");
-function requireVm(reqest,contextObject={},options={},moduleMap={}) {
+const cacheMap = {};
+function requireVm(reqest,contextObject={},options={},moduleMap={},isCache=false) {
     if(moduleMap[reqest]) {
         return moduleMap[reqest];
     }
@@ -13,10 +14,26 @@ function requireVm(reqest,contextObject={},options={},moduleMap={}) {
     if(!path.isAbsolute(jsPath)) {
         throw new Error(`can't find module<${jsPath}>,you maybe nedd moduleMap params`);
     }
-    if(!fs.existsSync(jsPath)) {
-        throw new Error(`can't find file:${jsPath}`);
+    let jsCode;
+    let codeScript;
+    if(isCache && cacheMap[jsPath]){
+        jsCode = cacheMap[jsPath].code;
+        codeScript = cacheMap[jsPath].script;
+        options.cachedData = cacheMap[jsPath].cachedData;
+    } else {
+        if(!fs.existsSync(jsPath)) {
+            throw new Error(`can't find file:${jsPath}`);
+        }
+        jsCode = fs.readFileSync(jsPath);
+        codeScript = new vm.Script(jsCode,options);
     }
-    let jsCode = fs.readFileSync(jsPath);
+    if(isCache) {
+        cacheMap[jsPath] = {
+            code:jsCode,
+            script:codeScript,
+            cachedData:codeScript.createCachedData()
+        }
+    }
     options.filename = jsPath;
     contextObject.module = {
         exports:{},
@@ -24,7 +41,7 @@ function requireVm(reqest,contextObject={},options={},moduleMap={}) {
     contextObject.exports = contextObject.module.exports;
     contextObject.__dirname = path.dirname(jsPath);
     contextObject.__filename = jsPath;
-    vm.runInNewContext(jsCode,contextObject,options);
+    codeScript.runInNewContext(contextObject,options);
     return contextObject.module.exports;
 }
 module.exports = requireVm;

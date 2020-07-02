@@ -1,5 +1,5 @@
 const requireVm = require('../index');
-// example 1 ------------------------------------------------------
+// example a------------------------------------------------------
 /**
  * ./a.js:
  * module.exports = {__dirname,__filename};
@@ -14,7 +14,7 @@ console.log(moduleA)
  * }
  */
 
-// example 2 ------------------------------------------------------
+// example b ------------------------------------------------------
 let contextB = {setTimeout}
 requireVm('./b.js',contextB)
 console.log(contextB)
@@ -31,7 +31,15 @@ console.log(contextB)
 // If a file has a memory leak, it can be deleted as an unreachable object
 delete contextB 
 
-// example 3 ------------------------------------------------------
+// example c ------------------------------------------------------
+// use cache,Do not open it unless repeat run requireVm function with same module name
+const cache = true;
+for(let i=0;i<1000;i++) {
+    requireVm('./c.js',{},{},{},cache);
+}
+
+
+// other example ------------------------------------------------------
 const moduleMap ={
     'fs':{
         readFileSync(filePath,options={}) {
