@@ -2,17 +2,16 @@ const vm = require("vm");
 const fs = require("fs");
 const path = require("path");
 function requireVm(reqest,contextObject={},options={},moduleMap={}) {
+    if(moduleMap[reqest]) {
+        return moduleMap[reqest];
+    }
     const resolvePath = [];
     if(module.parent && module.parent.path) {
         resolvePath.push(module.parent.path,...module.parent.paths);
     }
     const jsPath = require.resolve(reqest,{paths:resolvePath});
     if(!path.isAbsolute(jsPath)) {
-        if(moduleMap[jsPath]) {
-            return moduleMap[jsPath];
-        } else {
-            throw new Error("can't find module,you maybe nedd moduleMap params");
-        }
+        throw new Error(`can't find module<${jsPath}>,you maybe nedd moduleMap params`);
     }
     if(!fs.existsSync(jsPath)) {
         throw new Error(`can't find file:${jsPath}`);
