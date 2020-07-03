@@ -12,7 +12,7 @@ function requireVm(reqest,contextObject={},options={},moduleMap={},isCache=false
     }
     const jsPath = require.resolve(reqest,{paths:resolvePath});
     if(!path.isAbsolute(jsPath)) {
-        throw new Error(`can't find module<${jsPath}>,you maybe nedd moduleMap params`);
+        throw new Error(`can't find module<${jsPath}>,you maybe need moduleMap params`);
     }
     let jsCode;
     let codeScript;
