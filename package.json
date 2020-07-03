@@ -1,6 +1,6 @@
 {
   "name": "require-vm",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "more safe require ",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,8 @@
     "url": "https://github.com/zy445566/require-vm/issues"
   },
   "homepage": "https://github.com/zy445566/require-vm#readme",
-  "dependencies": {
-    "@types/node": "^14.0.14"
+  "devDependencies": {
+    "@types/node": "^14.0.14",
+    "eslint": "^7.3.1"
   }
 }
