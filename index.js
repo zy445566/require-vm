@@ -8,8 +8,8 @@ function requireVm(reqest, contextObject={}, options={}, moduleMap={}, isCache=f
   }
   if(!options.paths) {
     const resolvePath = [];
-    if(module.parent && module.parent.id) {
-      resolvePath.push(path.dirname(module.parent.id), ...module.parent.paths);
+    if(module.parent && module.parent.filename) {
+      resolvePath.push(path.dirname(module.parent.filename), ...module.parent.paths);
     }
     options.paths = resolvePath;
   }
