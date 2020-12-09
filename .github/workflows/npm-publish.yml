@@ -20,6 +20,7 @@ jobs:
       - run: npm test
 
   build-node-12:
+    needs: build-node-8
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
