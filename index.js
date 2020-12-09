@@ -8,8 +8,8 @@ function requireVm(reqest, contextObject={}, options={}, moduleMap={}, isCache=f
   }
   if(!options.paths) {
     const resolvePath = [];
-    if(module.parent && module.parent.path) {
-      resolvePath.push(module.parent.path, ...module.parent.paths);
+    if(module.parent && module.parent.id) {
+      resolvePath.push(path.dirname(module.parent.id), ...module.parent.paths);
     }
     options.paths = resolvePath;
   }
@@ -29,7 +29,7 @@ function requireVm(reqest, contextObject={}, options={}, moduleMap={}, isCache=f
     }
     jsCode = fs.readFileSync(jsPath);
     codeScript = new vm.Script(jsCode, options);
-    if(isCache) {
+    if(isCache && codeScript.createCachedData) {
       requireVm.cacheMap[jsPath] = {
         code:jsCode,
         script:codeScript,

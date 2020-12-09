@@ -9,7 +9,17 @@ on:
       - master
 
 jobs:
-  build:
+  build-node-8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: npm ci
+      - run: npm test
+
+  build-node-12:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
