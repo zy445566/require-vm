@@ -1,4 +1,4 @@
-const requireVm = require('../index');
+const {requireVm} = require('../index');
 // example a------------------------------------------------------
 /**
  * ./a.js:
@@ -52,4 +52,23 @@ console.log(fs);
 /**
  * output:
  * { readFileSync: [Function: readFileSync] }
+ */
+
+// // grandchildren reference ------------------------------------------------------
+const moduleAP1 = requireVm('./ap/ap1.js');
+console.log(moduleAP1);
+/**
+ * output:
+ * {
+ *   __dirname: 'D:\\Github\\require-vm\\test\\ap',
+ *   __filename: 'D:\\Github\\require-vm\\test\\ap\\ap1.js',
+ *   ap2: {
+ *     __dirname: 'D:\\Github\\require-vm\\test\\ap',
+ *     __filename: 'D:\\Github\\require-vm\\test\\ap\\ap2.js',
+ *     a: {
+ *       __dirname: 'D:\\Github\\require-vm\\test',
+ *       __filename: 'D:\\Github\\require-vm\\test\\a.js'
+ *     }
+ *   }
+ * }
  */

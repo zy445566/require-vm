@@ -1,4 +1,4 @@
 module.exports = {
-    __dirname,
-    __filename
+  __dirname,
+  __filename,
 };
